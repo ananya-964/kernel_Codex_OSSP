@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<unistd.h>
 #include<stdlib.h>
+#include<sys/wait.h>
 int main(){
 int pid;
 pid=fork();
@@ -11,6 +12,6 @@ exit(0);
 else{
 printf("Parent process %d\n",getpid());
 sleep(30);//making the parent to wait
-printf("Parent process completed");
+printf("Parent process completed\n");
 }
 }
