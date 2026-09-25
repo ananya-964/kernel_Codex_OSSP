@@ -1,26 +1,27 @@
-uname -a → The uname command shows basic details about the Linux system and its kernel.
+uname -a → Shows basic information about the Linux system and kernel.
 
-lscpu → The lscpu command displays CPU-related information such as architecture, number of cores, threads, and processor details.
+lscpu → Shows CPU details such as architecture, cores, and threads.
 
-lsblk → The lsblk command lists available block devices, including storage disks and their partitions.
+lsblk → Shows storage devices like disks and their partitions.
 
-ps → The ps command shows details about processes that are currently running in the system.
+ps → Shows the processes currently running on the system.
 
-top → The top command continuously displays system activity, including CPU usage, memory usage, and running processes.
+top → Shows live system information such as CPU usage, memory usage, and processes.
 
-The Operating System (OS) works as an interface between computer hardware and application programs. It manages hardware resources and provides common services that allow applications to use the hardware safely and efficiently.
+
+The Operating System (OS) acts as a link between the hardware and application programs. It manages the hardware and provides useful services to applications.
 
 CPU Abstraction:
-The OS provides an abstraction of the CPU through processes and scheduling. Applications do not directly manage the processor; instead, the OS scheduler determines which process receives CPU time.
+The OS manages the CPU using processes and scheduling. It decides which process gets CPU time.
 
 Memory Abstraction:
-The OS gives each process a virtual address space. This allows programs to use memory without needing to know where the data is physically stored in RAM.
+The OS gives each process its own virtual memory space. Programs do not need to know the actual location of data in RAM.
 
 Storage Abstraction:
-The OS simplifies storage management by organizing physical storage devices into files, directories, and file systems. Applications can access data through files instead of dealing directly with disk sectors.
+The OS manages storage using files, folders, and file systems. Programs can work with files without directly handling the disk.
 
 I/O Device Abstraction:
-The OS manages hardware devices through device drivers. Applications interact with devices such as keyboards, displays, and disks through standard OS interfaces and system calls.
+The OS manages devices such as keyboards, screens, and disks using device drivers. Programs can use these devices through system calls.
 
 Conclusion:
-Therefore, the OS provides a simplified and controlled interface to hardware by hiding its complexity and offering useful abstractions and services to application programs.
+The OS makes hardware easier and safer to use by hiding its complex details and providing simple services to applications.
