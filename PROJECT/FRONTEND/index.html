@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hospital Emergency Patient Monitoring System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- LOGIN -->
+<section id="login" class="login">
+  <div class="login-card">
+    <div class="brand"><span class="logo" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M10 3h4v7h7v4h-7v7h-4v-7H3v-4h7z"/></svg></span>
+      <div><strong>HEMS</strong><small>Hospital Emergency Patient Monitoring System</small></div></div>
+    <h1>Staff sign in</h1>
+    <form id="loginForm" autocomplete="off">
+      <label>Username<input id="user" required autofocus></label>
+      <label>Password<input id="pass" type="password" required></label>
+      <p id="loginErr" class="err" role="alert" hidden></p>
+      <button class="btn primary" type="submit">Sign in</button>
+    </form>
+    <p class="hint" id="loginHint"></p>
+  </div>
+  <svg class="ecg" viewBox="0 0 800 120" preserveAspectRatio="none" aria-hidden="true"><path d="M0 60h180l20-40 25 85 25-70 15 25h120l20-40 25 85 25-70 15 25h330"/></svg>
+</section>
+
+<!-- APP -->
+<div id="app" class="app" hidden>
+  <aside class="side">
+    <div class="brand"><span class="logo" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M10 3h4v7h7v4h-7v7h-4v-7H3v-4h7z"/></svg></span><div><strong>HEMS</strong><small>Emergency monitoring</small></div></div>
+    <nav id="nav">
+      <button data-page="dashboard" class="on"><svg viewBox="0 0 24 24"><path d="M3 13h8V3H3zm10 8h8V11h-8zM3 21h8v-6H3zM13 3v6h8V3z"/></svg>Dashboard</button>
+      <button data-page="monitor"><svg viewBox="0 0 24 24"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg>Monitor patient</button>
+      <button data-page="alerts"><svg viewBox="0 0 24 24"><path d="M12 3 2 21h20zM12 10v5m0 3v.01"/></svg>Doctor alerts<span id="alertBadge" class="badge" hidden></span></button>
+      <button data-page="history"><svg viewBox="0 0 24 24"><path d="M12 7v5l3 2M3 12a9 9 0 1 0 3-6.7M3 4v5h5"/></svg>Patient history</button>
+    </nav>
+    <button id="logout" class="logout">Sign out</button>
+  </aside>
+
+  <main class="main">
+    <header class="top">
+      <div><h2 id="pageTitle">Dashboard</h2><p id="pageSub"></p></div>
+      <div class="top-r"><span id="mode" class="mode demo">Checking backend…</span><button id="refresh" class="btn ghost">Refresh</button></div>
+    </header>
+    <div id="banner" class="banner" hidden></div>
+
+    <!-- Dashboard -->
+    <section id="p-dashboard" class="page">
+      <div class="stats" id="stats"></div>
+      <div class="grid2">
+        <div class="card"><h3>Emergency alerts</h3><div id="dashAlerts" class="list"></div></div>
+        <div class="card"><h3>Recent patient activity</h3><div id="dashRecent" class="list"></div></div>
+      </div>
+    </section>
+
+    <!-- Monitor -->
+    <section id="p-monitor" class="page" hidden>
+      <div class="grid2 mon">
+        <form id="monForm" class="card">
+          <h3>Patient registration and readings</h3>
+          <div class="fields">
+            <label>Patient ID<input name="id" required maxlength="20" placeholder="e.g. P-1042"></label>
+            <label>Patient name<input name="name" required maxlength="60"></label>
+            <label>Age (years)<input name="age" type="number" min="0" max="130" required></label>
+            <label>Heart rate (BPM)<input name="hr" type="number" min="0" max="300" required></label>
+            <label>Blood pressure (mmHg)<input name="bp" required pattern="\d{2,3}/\d{2,3}" placeholder="systolic/diastolic, e.g. 120/80"></label>
+            <label>Body temperature (°C)<input name="temp" type="number" step="0.1" min="20" max="45" required></label>
+            <label>Oxygen saturation SpO₂ (%)<input name="spo2" type="number" min="0" max="100" required></label>
+          </div>
+          <button class="btn primary" type="submit" id="monBtn">Monitor patient</button>
+        </form>
+        <div class="card" id="result">
+          <h3>Monitoring result</h3>
+          <p class="empty">Submit readings to see the status returned by the C backend.</p>
+        </div>
+      </div>
+      <div class="card"><h3>Backend pipeline</h3><ol class="pipe" id="pipe"></ol></div>
+    </section>
+
+    <!-- Alerts -->
+    <section id="p-alerts" class="page" hidden>
+      <div id="alertCards" class="alert-cards"></div>
+      <div class="card"><h3>Alert history</h3><div class="tbl" id="alertTbl"></div></div>
+    </section>
+
+    <!-- History -->
+    <section id="p-history" class="page" hidden>
+      <div class="card">
+        <div class="filters"><input id="q" placeholder="Search patient ID or name">
+          <select id="fs"><option value="">All statuses</option><option>NORMAL</option><option>WARNING</option><option>EMERGENCY</option></select></div>
+        <div class="tbl" id="histTbl"></div>
+      </div>
+    </section>
+  </main>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
